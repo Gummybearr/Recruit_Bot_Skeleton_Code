@@ -23,13 +23,14 @@ from constants.urls import RECRUITMENT_URL_SKKU, RECRUITMENT_URL_JOBKOREA
 # import functions
 from src.db_utils import parse_new_recruitment, parse_new_chat
 from src.db_utils import query_all_user_in_db, parse_user
-from src.web_utils import get_web_cookie, parse_web_recruitment_skku, get_web_html
+from src.web_utils import get_web_cookie, parse_web_recruitment_skku
+from src.web_utils import get_web_html
 from src.web_utils import parse_web_recruitment_jobkorea, get_telegram_chat_of_last_24_hours
 from src.web_utils import send_telegram_message
 from src.utils import make_bot_message_form
 
 # set databavse directory
-#DB_DIR = LOCAL_DB_DIRECTORY
+# DB_DIR = LOCAL_DB_DIRECTORY
 DB_DIR = CLOUD_DB_DIRECTORY
 
 # crawl and parse skku data
@@ -69,9 +70,19 @@ parsed_user = parse_user(users, DB_DIR)
 # send messages
 for i in parsed_user:
     i = str(i)
+    if i=="808560264":
+        continue
+    if i=="717992478":
+        continue
+    if i=="1388060455":
+        continue
+    if i=="760600616":
+        continue
     try:
         for recruitment in parsed_recruitment:
             send_telegram_message(TELEGRAM_BOT_TOKEN, i, make_bot_message_form(recruitment))
+        if i=="877064775":
+            send_telegram_message(TELEGRAM_BOT_TOKEN, i, "소영아 오늘도 좋은 하루 보내구 사랑해♡")
     except Exception as error_case:
         send_telegram_message(TELEGRAM_BOT_TOKEN, ADMIN_TELEGRAM_ID, i+str(error_case))
 

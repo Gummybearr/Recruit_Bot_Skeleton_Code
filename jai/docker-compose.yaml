@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ~/jai/db/mysql:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: gyunghoe
+      MYSQL_DATABASE: jai
+      MYSQL_USER: gyunghoe
+      MYSQL_PASSWORD: gyunghoe
+    ports:
+      - 13306:3306
+
+#  mongo:
+#    image: mongo:latest
+#    volumes:
+#      - ~/jai/db/mongo:/data/db
+#    restart: always
+#    environment:
+#      MONGO_INITDB_DATABASE: jai
+#      MONGO_INITDB_ROOT_USERNAME: gyunghoe
+#      MONGO_INITDB_ROOT_PASSWORD: gyunghoe
+#    ports:
+#      - 17017:27017

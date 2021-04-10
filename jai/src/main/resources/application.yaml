@@ -1,0 +1,23 @@
+spring:
+#  data:
+#    mongodb:
+#      host: 127.0.0.1
+#      port: 17017
+#      database: jai
+#      username: gyunghoe
+#      password: gyunghoe
+
+  datasource:
+    url: jdbc:mysql://localhost:13306/jai
+    username: gyunghoe
+    password: gyunghoe
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        default_batch_fetch_size: 1000
+        show_sql: true
+        format_sql: true
