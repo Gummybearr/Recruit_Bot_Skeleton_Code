@@ -2,7 +2,7 @@ package com.gummybearr.jai.domain.crawl;
 
 import com.gummybearr.jai.constants.Auth.SKKU;
 import com.gummybearr.jai.constants.Urls;
-import com.gummybearr.jai.domain.auth.Auth;
+import com.gummybearr.jai.domain.crawl.auth.Auth;
 import com.gummybearr.jai.domain.crawl.parse.ParseJobKorea;
 import com.gummybearr.jai.domain.crawl.parse.ParseSkku;
 import com.gummybearr.jai.domain.recruitment.Recruitment;

@@ -20,4 +20,8 @@ public class User {
         this.userId = userId;
         this.preference = "";
     }
+
+    public long userId() {
+        return this.userId;
+    }
 }

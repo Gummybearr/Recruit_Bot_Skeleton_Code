@@ -1,3 +1,5 @@
-.ipynb_checkpoints/
-src/__pycache__/
-constants/__pycache__/
+jai/src/main/java/com/gummybearr/jai/constants/
+
+v.1.x/.ipynb_checkpoints/
+v.1.x/src/__pycache__/
+v.1.x/constants/
