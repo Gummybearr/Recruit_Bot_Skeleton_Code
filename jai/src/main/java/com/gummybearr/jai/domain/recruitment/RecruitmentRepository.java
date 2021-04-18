@@ -10,8 +10,8 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Long> 
 
     List<Recruitment> findByHashedValue(Long hashedValue);
 
-    List<Recruitment> findRecruitmentsByHashedValueIn(List<Long> hashValues);
+    List<Recruitment> findByHashedValueIn(List<Long> hashValues);
 
-    @Query("select r from Recruitment r where r.company like %:word%")
+    @Query("select r from Recruitment r where r.content like %:word% or r.company like %:word%")
     List<Recruitment> findRecruitmentLike(@Param("word") String word);
 }

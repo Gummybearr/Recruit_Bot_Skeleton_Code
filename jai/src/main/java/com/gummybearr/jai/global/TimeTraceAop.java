@@ -1,7 +1,6 @@
 package com.gummybearr.jai.global;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 
 import java.util.logging.Logger;
@@ -11,7 +10,7 @@ public class TimeTraceAop {
 
     Logger logger = Logger.getGlobal();
 
-    @Around("execution(* com.gummybearr.jai.domain..*(..))")
+    //    @Around("execution(* com.gummybearr.jai.domain..*(..))")
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
 //        logger.log(Level.INFO, "Start: " + String.valueOf(joinPoint));

@@ -12,12 +12,12 @@ import java.util.concurrent.Executor;
 public class Config {
 
     @Bean
-    public TimeTraceAop timeTraceAop(){
+    public TimeTraceAop timeTraceAop() {
         return new TimeTraceAop();
     }
 
     @Bean(name = "threadPoolTaskExecutor")
-    public Executor threadPoolTaskExecutor(){
+    public Executor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(3);
         taskExecutor.setMaxPoolSize(30);

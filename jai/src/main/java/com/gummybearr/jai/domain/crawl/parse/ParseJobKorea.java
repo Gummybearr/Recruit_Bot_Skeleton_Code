@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class ParseJobKorea implements ParseStrategy {
 
-    public static final int PARSE_COUNT = 100;
+    public static final int PARSE_COUNT = 50;
 
     @Override
     public List<Recruitment> parse(Document document) {

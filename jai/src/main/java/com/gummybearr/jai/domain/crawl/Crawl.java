@@ -12,7 +12,8 @@ import java.util.Map;
 
 public class Crawl {
 
-    public static final String CRON_CRAWL_TERM = "0 13 * * 1-5";
+    //    public static final String CRON_CRAWL_TERM = "0 0 13 * * 1-5";
+    public static final String CRON_CRAWL_TERM = "0 0 13 * * 1-5";
 
     public Document htmlBody(String url, Map<String, String> cookies) throws IOException {
         Connection connection = Jsoup.connect(url);

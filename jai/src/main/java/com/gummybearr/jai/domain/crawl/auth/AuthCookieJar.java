@@ -19,15 +19,15 @@ public class AuthCookieJar implements CookieJar {
 
     @Override
     public List<Cookie> loadForRequest(HttpUrl url) {
-        if(cookies != null){
+        if (cookies != null) {
             return cookies;
         }
         return new ArrayList<>();
     }
 
-    public Map<String, String> cookie(){
+    public Map<String, String> cookie() {
         return cookies.stream()
-                .filter(cookie->!cookie.value().isEmpty())
+                .filter(cookie -> !cookie.value().isEmpty())
                 .collect(Collectors.toSet())
                 .stream()
                 .collect(Collectors.toMap(Cookie::name, Cookie::value));

@@ -1,6 +1,10 @@
 package com.gummybearr.jai.domain.telegramBot;
 
+import com.gummybearr.jai.constants.Auth;
 import com.gummybearr.jai.domain.message.Message;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.net.URL;
@@ -8,11 +12,13 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MessageBot {
     private static final String URL_STRING = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s";
     private static final int CONNECTION_TIMEOUT_LIMIT = 10_000;
 
-    private final String apiToken;
+    private String apiToken = Auth.Telegram.TOKEN;
 
     public MessageBot(String apiToken) {
         this.apiToken = apiToken;
@@ -24,7 +30,7 @@ public class MessageBot {
                 .collect(Collectors.toList());
     }
 
-    private String send(Message message, Long chatId) {
+    public String send(Message message, Long chatId) {
         try {
             String urlString = String.format(URL_STRING, this.apiToken, chatId, message);
             URL url = new URL(urlString);

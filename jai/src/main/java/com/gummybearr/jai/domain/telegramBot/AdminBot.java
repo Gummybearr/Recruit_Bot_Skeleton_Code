@@ -11,11 +11,7 @@ import java.util.List;
 
 @Component
 public class AdminBot {
-    private static final TelegramBot bot = new TelegramBot(Auth.Telegram.adminToken);
-
-//    public void send(Message message) {
-//        bot.execute(new SendMessage(chatId, message.toString()));
-//    }
+    private static final TelegramBot bot = new TelegramBot(Auth.Telegram.ADMIN_TOKEN);
 
     public static void send(List<UserMessage> userMessages) {
         List<Message> messages = Message.messages(userMessages);
@@ -24,6 +20,10 @@ public class AdminBot {
     }
 
     public static void send(Message message) {
-        bot.execute(new SendMessage(Auth.Telegram.admin, message.toString()));
+        bot.execute(new SendMessage(Auth.Telegram.ADMIN_ID, message.toString()));
+    }
+
+    public static void send(Exception exception) {
+        bot.execute(new SendMessage(Auth.Telegram.ADMIN_ID, exception.toString()));
     }
 }

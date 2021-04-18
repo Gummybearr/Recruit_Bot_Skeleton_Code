@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.gummybearr.jai.constants.Auth.*;
+import static com.gummybearr.jai.constants.Auth.JobKorea;
+import static com.gummybearr.jai.constants.Auth.SKKU;
 
 class AuthTest {
 
