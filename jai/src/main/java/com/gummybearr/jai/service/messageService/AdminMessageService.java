@@ -1,6 +1,5 @@
 package com.gummybearr.jai.service.messageService;
 
-import com.gummybearr.jai.constants.Auth;
 import com.gummybearr.jai.domain.message.AdminMessageType;
 import com.gummybearr.jai.domain.message.Message;
 import com.gummybearr.jai.domain.telegramBot.AdminBot;
@@ -30,14 +29,13 @@ public class AdminMessageService {
             long count = userRepository.count();
             AdminBot.send(Message.ofCount(count));
         }
-        if(adminMessageType.equals(AdminMessageType.BROADCAST)){
+        if (adminMessageType.equals(AdminMessageType.BROADCAST)) {
             userMessage = UserMessage.detachHead(userMessage);
             UserMessage finalUserMessage = userMessage;
             userRepository.findAll()
                     .parallelStream()
                     .map(user -> {
-//                        resultBot.send(finalUserMessage.getMessage(), user.getChatId());
-                        resultBot.send(finalUserMessage.getMessage(), Auth.Telegram.ADMIN_ID);
+                        resultBot.send(finalUserMessage.getMessage(), user.getChatId());
                         System.out.println(finalUserMessage.getMessage());
                         return null;
                     })
