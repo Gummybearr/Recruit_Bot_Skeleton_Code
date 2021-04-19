@@ -21,7 +21,7 @@ public class UserCache extends LinkedHashMap<Long, User> {
     }
 
     public void put(User user) {
-        super.put(user.chatId(), user);
+        super.put(user.getChatId(), user);
     }
 
     @Override

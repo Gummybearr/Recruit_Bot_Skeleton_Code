@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResultBot {
 
-    public static final String CRON_UPDATE_TERM = "*/4 * * * * *";
-
     private static final TelegramBot bot = new TelegramBot(Auth.Telegram.TOKEN);
 
     public void send(String stringMessage, long chatId) {

@@ -7,6 +7,7 @@ import java.util.Arrays;
 public enum AdminMessageType {
     COUNT_USER("#count user"),
     VIEW_MEMORY("#view memory"),
+    BROADCAST("#broadcast"),
 
     OTHERS("#others");
 

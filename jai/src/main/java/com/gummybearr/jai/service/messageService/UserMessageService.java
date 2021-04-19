@@ -1,5 +1,6 @@
 package com.gummybearr.jai.service.messageService;
 
+import com.gummybearr.jai.domain.help.Help;
 import com.gummybearr.jai.domain.message.Message;
 import com.gummybearr.jai.domain.message.UserMessageType;
 import com.gummybearr.jai.domain.recruitment.Recruitment;
@@ -21,6 +22,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserMessageService {
 
+    private static final String BLACK_LIST_STRING = "블랙리스트";
+    private static final String WHITE_LIST_STRING = "화이트리스트";
+
+    private static final String USER_NOTICE_FORMAT = "\uD83D\uDC40%s 현황%n - %s";
+
     private final MessageBot messageBot;
     private final ResultBot resultBot;
 
@@ -40,6 +46,9 @@ public class UserMessageService {
         }
         if (userMessageType.equals(UserMessageType.WHITE_LIST)) {
             handleWhiteList(userMessage);
+        }
+        if (userMessageType.equals(UserMessageType.HELP)){
+            handleHelp(userMessage);
         }
     }
 
@@ -76,7 +85,7 @@ public class UserMessageService {
             user = user.delBlackList(userMessage.getMessage());
         }
         userService.putUser(user);
-        resultBot.send(userNoticeMessage("블랙리스트", user.getBlackList()), user.chatId());
+        resultBot.send(userNoticeMessage(BLACK_LIST_STRING, user.getBlackList()), user.getChatId());
     }
 
     private void handleWhiteList(UserMessage userMessage) {
@@ -90,11 +99,15 @@ public class UserMessageService {
             user = user.delWhiteList(userMessage.getMessage());
         }
         userService.putUser(user);
-        resultBot.send(userNoticeMessage("화이트리스트", user.getWhiteList()), user.chatId());
+        resultBot.send(userNoticeMessage(WHITE_LIST_STRING, user.getWhiteList()), user.getChatId());
+    }
+
+    private void handleHelp(UserMessage userMessage) {
+        resultBot.send(Help.helpDoc, userMessage.getChatId());
     }
 
     private String userNoticeMessage(String string, String noticeContent) {
-        return String.format("\uD83D\uDC40%s 현황%n - %s", string, noticeContent);
+        return String.format(USER_NOTICE_FORMAT, string, noticeContent);
     }
 
 }

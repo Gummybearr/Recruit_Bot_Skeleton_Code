@@ -2,6 +2,7 @@ package com.gummybearr.jai.domain.user;
 
 import com.gummybearr.jai.domain.recruitment.Recruitment;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -13,10 +14,12 @@ import java.util.stream.Collectors;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {@Index(columnList = "chatId")})
+@Getter
 @ToString
 public class User {
 
     private static final String DELIMITER = " ";
+    public static final String COLOR_LIST_CONCAT_FORMAT = "%s %s";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,18 +35,8 @@ public class User {
         this.whiteList = "";
     }
 
-    private User(Long chatId, String blackList, String whiteList) {
-        this.chatId = chatId;
-        this.blackList = blackList;
-        this.whiteList = whiteList;
-    }
-
-    public long chatId() {
-        return this.chatId;
-    }
-
     public User addBlackList(String string) {
-        this.blackList = String.format("%s %s", delBlackList(string).blackList, string).trim();
+        this.blackList = String.format(COLOR_LIST_CONCAT_FORMAT, delBlackList(string).blackList, string).trim();
         return this;
     }
 
@@ -56,7 +49,7 @@ public class User {
     }
 
     public User addWhiteList(String string) {
-        this.whiteList = String.format("%s %s", delWhiteList(string).whiteList, string).trim();
+        this.whiteList = String.format(COLOR_LIST_CONCAT_FORMAT, delWhiteList(string).whiteList, string).trim();
         return this;
     }
 
@@ -68,16 +61,8 @@ public class User {
         return this;
     }
 
-    public String getBlackList() {
-        return blackList;
-    }
-
-    public String getWhiteList() {
-        return whiteList;
-    }
-
     public boolean filterBlackList(Recruitment recruitments) {
-        if(blackList.trim().isBlank()){
+        if (blackList.trim().isBlank()) {
             return true;
         }
         List<String> blackLists = Arrays.stream(blackList.split(DELIMITER))
@@ -87,7 +72,7 @@ public class User {
     }
 
     public boolean filterWhiteList(Recruitment recruitments) {
-        if(whiteList.trim().isBlank()){
+        if (whiteList.trim().isBlank()) {
             return true;
         }
         List<String> blackLists = Arrays.stream(whiteList.split(DELIMITER))

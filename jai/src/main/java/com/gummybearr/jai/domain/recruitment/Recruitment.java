@@ -1,10 +1,14 @@
 package com.gummybearr.jai.domain.recruitment;
 
+import com.gummybearr.jai.domain.user.User;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+
+import static java.lang.Math.abs;
+import static java.lang.String.format;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -12,6 +16,7 @@ import java.util.List;
 public class Recruitment {
 
     private static final int HASHCODE_DIVIDER = 10;
+    private static final String TO_STRING_FORMAT = "[%s]%n%s%n%s%n";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,15 +45,15 @@ public class Recruitment {
     }
 
     public String flatString(){
-        return String.format("%s %s",this.company, this.content);
+        return format(User.COLOR_LIST_CONCAT_FORMAT,this.company, this.content);
     }
 
     private int shrinkInteger(int hashCode) {
-        return Math.abs(hashCode / HASHCODE_DIVIDER);
+        return abs(hashCode / HASHCODE_DIVIDER);
     }
 
     @Override
     public String toString() {
-        return String.format("[%s]%n%s%n%s%n", company, content, deadline);
+        return format(TO_STRING_FORMAT, company, content, deadline);
     }
 }

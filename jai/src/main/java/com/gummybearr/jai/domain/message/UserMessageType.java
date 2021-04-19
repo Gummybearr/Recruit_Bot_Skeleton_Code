@@ -9,6 +9,7 @@ public enum UserMessageType {
     BLACK_LIST("/blacklist"),
     SEARCH("/search"),
     ALARM("/alarm"),
+    HELP("/help"),
 
     OTHERS("/others");
 

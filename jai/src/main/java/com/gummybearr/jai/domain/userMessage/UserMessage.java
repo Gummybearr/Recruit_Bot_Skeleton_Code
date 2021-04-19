@@ -2,6 +2,7 @@ package com.gummybearr.jai.domain.userMessage;
 
 import com.gummybearr.jai.constants.Auth;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @ToString
 public class UserMessage {
 
@@ -54,14 +56,6 @@ public class UserMessage {
         List<String> splitString = Arrays.stream(string.split(" "))
                 .collect(Collectors.toList());
         return String.join(" ", splitString.subList(1, splitString.size())).trim();
-    }
-
-    public Long getChatId() {
-        return chatId;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public boolean isAdmin() {
